@@ -10,12 +10,9 @@ def home(request):
 
 
 def loading_page(request):
-    # simulate some long-running task
-    import time
-    time.sleep(2)
-
-    # redirect to the destination page
-    return redirect(reverse('generated'))
+    delay = 2  # delay in seconds
+    generated = reverse('generated')
+    return render(request, 'ideas/loading.html', {'delay': delay, 'generated': generated})
 
 
 def generated(request):

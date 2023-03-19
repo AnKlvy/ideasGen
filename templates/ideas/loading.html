@@ -1,5 +1,6 @@
 {% extends 'ideas/index.html' %}
 {% block content %}
-    <img src="giphy.gif">
+{#    <img src="giphy.gif">#}
     <h1>Loading...</h1>
+    <meta http-equiv="refresh" content="{{ delay }}; url={{ generated }}">
 {% endblock  %}
