@@ -6,7 +6,7 @@ from django.urls import reverse
 # Create your views here.
 
 def home(request):
-    return render(request, 'ideas/index.html')
+    return render(request, 'ideas/ideasgen.html')
 
 
 def loading_page(request):
