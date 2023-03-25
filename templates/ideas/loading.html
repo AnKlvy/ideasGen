@@ -1,6 +1,13 @@
 {% extends 'ideas/index.html' %}
 {% block content %}
-{#    <img src="giphy.gif">#}
-    <h1>Loading...</h1>
+    {#    <div class="d-flex justify-content-center align-items-center" style="height: 200px;">#}
+    <div class="text-center">
+        <img src="../../giphy.gif" class="w-75">
+
+        <h1>
+            Loading...
+        </h1>
+    </div>
+    {#    </div>#}
     <meta http-equiv="refresh" content="{{ delay }}; url={{ generated }}">
-{% endblock  %}
+{% endblock %}
