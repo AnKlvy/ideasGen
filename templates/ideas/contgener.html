@@ -1,12 +1,15 @@
 {% extends 'ideas/index.html' %}
 {% block content %}
-    <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
-        <div class="input-group input-group-lg">
-            <input type="text" class="form-control" placeholder="Enter key words separated by commas">
-            <div class="input-group-append">
-                <button class="btn btn-primary btn-lg" type="button" id ="popup-btn">Send</button>
+    <form action="{% url 'contgener' %}" method="post" >
+    {% csrf_token %}
+        <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+            <div class="input-group input-group-lg">
+                <label for = "{{ form.id_for_label }}">{{ form.label }}</label>
+                {{ form.keywords }}
+                <div class="input-group-append">
+                    <button class="btn btn-primary btn-lg" type="submit" id="popup-btn">Send</button>
+                </div>
             </div>
         </div>
-    </div>
-
+    </form>
 {% endblock content %}
