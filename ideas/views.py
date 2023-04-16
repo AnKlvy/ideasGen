@@ -10,7 +10,7 @@ import os
 
 from ideas.forms import ContGener
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 
@@ -51,7 +51,14 @@ def contgener(request):
             )
             message = response.choices[0].text.strip()
             # return redirect('generated', message)
-            print(message)
+            print('chat gpt message:', message)
+            # response = openai.Image.create(
+            #     prompt=message,
+            #     n=1,
+            #     size="256x256"
+            # )
+            # image_url = response['data'][0]['url']
+            # print('chat gpt image url:', image_url)
             return render(request, 'ideas/generated.html', {'message': message})
 
     else:
