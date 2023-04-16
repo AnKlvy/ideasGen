@@ -10,7 +10,7 @@ import os
 
 from ideas.forms import ContGener
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 
@@ -42,12 +42,12 @@ def contgener(request):
             prompt = f"Make short, funny and meaningless idea using this keywords: {form.cleaned_data['keywords']}."
 
             response = openai.Completion.create(
-                engine="text-davinci-002",
+                engine="text-davinci-003",
                 prompt=prompt,
-                max_tokens=1024,
-                n=1,
-                stop=None,
-                temperature=0.7,
+                max_tokens=2048,
+                # n=1,
+                # stop=None,
+                temperature=1,
             )
             message = response.choices[0].text.strip()
             # return redirect('generated', message)
