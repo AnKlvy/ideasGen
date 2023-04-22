@@ -1,5 +1,6 @@
 import time
 
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -9,8 +10,9 @@ import openai
 import os
 
 from ideas.forms import ContGener
+from ideas.models import Ideas
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 
@@ -45,13 +47,11 @@ def contgener(request):
                 engine="text-davinci-003",
                 prompt=prompt,
                 max_tokens=2048,
-                # n=1,
-                # stop=None,
                 temperature=1,
             )
             message = response.choices[0].text.strip()
-            # return redirect('generated', message)
             print('chat gpt message:', message)
+            Ideas.objects.create(idea=message, user=request.user)
             # response = openai.Image.create(
             #     prompt=message,
             #     n=1,
