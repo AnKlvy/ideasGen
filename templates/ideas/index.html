@@ -39,7 +39,54 @@
 <br>
 <br>
 <br>
-{% include "ideas/popideas.html" %}
+<div class="container">
+    {% if page_obj.has_other_pages %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link"
+                                             href="?page={{ page_obj.previous_page_number }}"><</a>
+                    </li>
+                {% endif %}
+                {% for p in paginator.page_range %}
+                    {% if page_obj.number == p %}
+                        <li class="page-item active"><a class="page-link">{{ p }}</a></li>
+                    {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                        <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link"
+                                             href="?page={{ page_obj.next_page_number }}">></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+    <div class="row">
+        {% if ideas %}
+            {% for i in ideas %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">How about</h5>
+                            <p class="card-text">{{ i.idea }}</p>
+                            <button type="button" class="text-12 btn btn-primary rounded-circle">♡</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+{#            <p>No ideas are available.</p>#}
+        {% endif %}
+
+    </div>
+</div>
+{% if ideas %}
+    {% else %}
+            <div class="text-center"><img width="256px" src="../../congen.png"><img width="256px" src="../../congen1.png"><img width="256px" src="../../congen2.png"><img width="256px" src="../../congen3.png"><img width="256px" src="../../congen4.png"></div>
+{% endif %}
 
 
 </body>
