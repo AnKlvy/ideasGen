@@ -1,13 +1,20 @@
 {% extends 'ideas/index.html' %}
 {% block content %}
-    <form action="{% url 'ownidea' %}" method="post">
-        {% csrf_token %}
+    <form action="{% url 'ownidea' %}" method="POST">
+        <div class="text-danger">{{ form.non_field_errors }}</div>
+
         <div class="input-group input-group-lg mb-2 mt-2">
             {#            <input type="text" class="form-control" placeholder="Share your idea">#}
-            <label for = "{{ form.id_for_label }}">{{ form.label }}</label>
-                {{ form.idea }}
+
+            {% for f in form %}
+                <label for="{{ f.id_for_label }}"></label>
+                {{ f }}
+            {% endfor %}
+
             <div class="input-group-append">
-                <button class="btn btn-primary btn-lg" type="submit">Send</button>
+        {% csrf_token %}
+
+                <button type="submit" class="btn btn-primary btn-lg">Send</button>
             </div>
         </div>
     </form>
